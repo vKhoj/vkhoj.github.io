@@ -1,0 +1,43 @@
+<?php
+$host="localhost";
+$user="vuser";
+$password="vpass123";
+$db="vkhoj";
+
+
+$con = new mysqli($host,$user,$password,$db);
+
+if($con->connect_error){
+	
+			   die($con->connect_error);
+
+}
+ $sql = "Select * from users";
+
+ $sqldata = mysqli_query($con,$sql);
+ echo mysqli_error($con);
+ while($row = mysqli_fetch_array($sqldata,MYSQLI_ASSOC)){
+		echo $row['UserID'], " ", $row['Name'];
+ } 
+ 
+$con->close();
+?>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Login to portal</title>
+
+	</head>
+	<body>
+		<div>
+			<form method="POST" action="#" id="form1">
+			 	<div class="form_input">
+			 		<input type="text" name="user" placeholder="Enter user ID" />
+			 		<input type="password" name="password" placeholder="Enter password" />
+			 	</div>
+			</form> 
+				<button type="submit" form="form1" value="submit">Login</button>	
+		</div>
+	</body>	
+</html>
